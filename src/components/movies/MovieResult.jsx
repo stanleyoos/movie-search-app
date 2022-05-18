@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import MoviesContext from '../../context/movies/MoviesContext'
 import Spinner from '../layout/Spinner'
 import MovieItem from './MovieItem'
 //const axios = require('axios')
 
 const MovieResult = () => {
-  const [movies, setMovies] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { movies, loading } = useContext(MoviesContext)
 
-  useEffect(() => {
-    fetchMovies()
-  }, [])
-
-  const fetchMovies = async () => {
-    const response = await fetch(
-      'http://www.omdbapi.com?apikey=56769d04&s=toy story'
-    )
-    const data = await response.json()
-    setMovies(data.Search)
-    setLoading(false)
-  }
   if (loading) {
     return <Spinner />
   } else {

@@ -1,9 +1,10 @@
 import MovieResult from '../components/movies/MovieResult'
+import MovieSearch from '../components/movies/MovieSearch'
 
 const Home = () => {
   return (
     <div>
-      {/*Search component*/}
+      <MovieSearch />
       <MovieResult />
     </div>
   )
