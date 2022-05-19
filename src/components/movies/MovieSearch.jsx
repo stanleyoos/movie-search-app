@@ -1,28 +1,38 @@
 import { useState, useContext } from 'react'
 import MoviesContext from '../../context/movies/MoviesContext'
+import AlertContext from '../../context/alert/AlertContext'
+import { searchMovies } from '../../context/movies/MoviesActions'
 
 const MovieSearch = () => {
-  const { movies, searchMovies, clearMovies } = useContext(MoviesContext)
+  const { movies, clearMovies, dispatch } = useContext(MoviesContext)
+  const { setAlert } = useContext(AlertContext)
   const [text, setText] = useState('')
 
   const handleChange = (e) => {
     setText(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    searchMovies(text)
+    if (text === '') {
+      setAlert('Please type something', 'error')
+    } else {
+      dispatch({ type: 'SET_LOADING' })
+      const movies = await searchMovies(text)
+      dispatch({ type: 'GET_MOVIES', payload: movies })
+      setText('')
+    }
   }
   const handleClear = () => {
-    clearMovies()
+    dispatch({ type: 'CLEAR_MOVIES' })
     setText('')
   }
   return (
-    <div className="grid grid-cols-1   gap-18 mx-40">
+    <div className="grid grid-cols-1   gap-18 mx-20">
       <div>
         <form onSubmit={handleSubmit}>
           <div className="form-control">
-            <div className="relative">
+            <div className=" relative">
               <input
                 type="text"
                 className="w-full px-auto bg-gray-200 input input-lg text-black"
@@ -32,9 +42,9 @@ const MovieSearch = () => {
               />
               <button
                 type="submit"
-                className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg"
+                className="absolute top-0 right-0 rounded-l-none w-30 btn btn-lg"
               >
-                Go
+                Search
               </button>
             </div>
           </div>

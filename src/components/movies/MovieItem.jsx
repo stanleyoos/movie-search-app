@@ -11,7 +11,7 @@ const MovieItem = ({ movie: { Title, Poster, Year, imdbID } }) => {
         <h2 className="card-title">{Title}</h2>
         <p>{Year}</p>
         <div className="card-actions justify-end">
-          <Link to={`/movies/${imdbID}`}>
+          <Link to={`/movie/${imdbID}`}>
             <button className="btn btn-ghost">Info</button>
           </Link>
         </div>
@@ -19,7 +19,9 @@ const MovieItem = ({ movie: { Title, Poster, Year, imdbID } }) => {
     </div>
   )
 }
-
+// Link goes to movie:id adress
+// <Route path="/movie/:id" element={<Movie />} /> in App.js
+// opens Movie component
 MovieItem.propTypes = {
   movie: PropTypes.object.isRequired,
 }
