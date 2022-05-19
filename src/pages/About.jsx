@@ -5,7 +5,11 @@ const About = () => {
       <p className="mb-4 text-2xl font-light">
         A React app to search movies from OMDB API made by{' '}
         <strong>
-          <a target="_blank" href="https://github.com/stanleyoos">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/stanleyoos"
+          >
             {' '}
             stanleyoos
           </a>

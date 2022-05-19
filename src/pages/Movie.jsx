@@ -29,7 +29,7 @@ const Movie = () => {
       dispatch({ type: 'GET_MOVIE', payload: movie })
     }
     getMovieData()
-  }, [])
+  }, [dispatch, params.id])
   //
   if (loading) {
     return <Spinner />

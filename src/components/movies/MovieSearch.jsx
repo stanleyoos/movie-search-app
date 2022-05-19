@@ -4,7 +4,7 @@ import AlertContext from '../../context/alert/AlertContext'
 import { searchMovies } from '../../context/movies/MoviesActions'
 
 const MovieSearch = () => {
-  const { movies, clearMovies, dispatch } = useContext(MoviesContext)
+  const { movies, dispatch } = useContext(MoviesContext)
   const { setAlert } = useContext(AlertContext)
   const [text, setText] = useState('')
 
